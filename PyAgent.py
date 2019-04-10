@@ -19,6 +19,8 @@ class Agent:
         self.wumpus=True
         self.pos=[]
 
+        self.locationsWithBreezes=[] # store locations with known breezes
+
     def Initialize(self):
         # Works only for test world.
         # You won't initially know safe locations or world size.
@@ -26,6 +28,13 @@ class Agent:
         self.agentHasGold = False
         self.actionList = []
         self.visited.append([1,1])
+
+    # known var?
+    # breeze information var?
+    # frontier var?
+
+    # calculate probability that a location contains a pit
+    # def CalculateProbability(self, breeze):
 
     # Input percept is a dictionary [perceptName: boolean]
     def Process(self, stench, breeze, glitter, bump, scream):

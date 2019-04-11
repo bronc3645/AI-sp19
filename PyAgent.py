@@ -19,6 +19,9 @@ class Agent:
         self.wumpus=True
         self.pos=[]
 
+        #lowest probability, initialize as 1
+        self.lowestProbability=1;
+
         self.locationsWithBreezes=[] # store locations with known breezes
 
     def Initialize(self):
@@ -28,13 +31,6 @@ class Agent:
         self.agentHasGold = False
         self.actionList = []
         self.visited.append([1,1])
-
-    # known var?
-    # breeze information var?
-    # frontier var?
-
-    # calculate probability that a location contains a pit
-    # def CalculateProbability(self, breeze):
 
     # Input percept is a dictionary [perceptName: boolean]
     def Process(self, stench, breeze, glitter, bump, scream):

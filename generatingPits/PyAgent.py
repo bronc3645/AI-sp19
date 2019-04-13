@@ -67,13 +67,13 @@ class Agent:
                 if((not [self.posx,self.posy-1] in self.visited)and (not [self.posx,self.posy-1] in self.tovisit) and self.posy-1>=1):
                     self.searchEngine.RemoveSafeLocation(self.posx, self.posy-1)
             elif(bool(stench)):
-                if (not [self.posx + 1, self.posy] in self.visited and self.posx + 1 <= 5):
+                if ((not [self.posx+1,self.posy] in self.visited)and (not [self.posx+1,self.posy] in self.tovisit) and self.posx + 1 <= 5):
                     self.searchEngine.RemoveSafeLocation(self.posx + 1, self.posy)
-                if (not [self.posx, self.posy + 1] in self.visited and self.posy + 1 <= 5):
+                if ((not [self.posx,self.posy+1] in self.visited)and (not [self.posx,self.posy+1] in self.tovisit) and self.posy + 1 <= 5):
                     self.searchEngine.RemoveSafeLocation(self.posx, self.posy + 1)
-                if (not [self.posx - 1, self.posy] in self.visited and self.posx - 1 >= 1):
+                if ((not [self.posx-1,self.posy] in self.visited)and (not [self.posx-1,self.posy] in self.tovisit) and self.posx - 1 >= 1):
                     self.searchEngine.RemoveSafeLocation(self.posx - 1, self.posy)
-                if (not [self.posx, self.posy - 1] in self.visited and self.posy - 1 >= 1):
+                if ((not [self.posx, self.posy - 1] in self.visited) and (not [self.posx,self.posy-1] in self.tovisit) and self.posy - 1 >= 1):
                     self.searchEngine.RemoveSafeLocation(self.posx, self.posy - 1)
             else:
                 if (not [self.posx + 1, self.posy] in self.searchEngine.explored and self.posx+1<=4):
@@ -114,7 +114,6 @@ class Agent:
         if(not[self.posx,self.posy]in self.visited):
             self.visited.append([self.posx,self.posy])
         self.check()
-
         return action
 
     def printworld(self):
@@ -127,8 +126,10 @@ class Agent:
     def getpit(self):
         pits=[]
         for i in self.breezes:
-            y=i.pop()
-            x=i.pop()
+            print("breezes: "+str(i))
+            x = i.pop(0)
+            y=i.pop(0)
+            print("x: "+str(x)+" y: "+str(y))
             if ((not [x+1,y] in self.visited) and (not [x+1,y] in self.tovisit) and x+1<=4):
                 pits.append([x+1,y])
             if ((not [x-1,y] in self.visited) and (not [x-1,y] in self.tovisit) and x-1>=1):
@@ -137,10 +138,11 @@ class Agent:
                 pits.append([x,y+1])
             if ((not [x,y-1] in self.visited) and (not [x,y-1] in self.tovisit) and y-1>=1):
                 pits.append([x, y-1])
-            i.append(y)
             i.append(x)
+            i.append(y)
+
         for x in pits:
-            print(str(x))
+            print("possible pits: "+str(x))
 
     def check(self):
         for x in self.tovisit:

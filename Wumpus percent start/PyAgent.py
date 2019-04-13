@@ -157,7 +157,7 @@ class Agent:
         denom = 0.00
         pit = .2
         noPit = .8
-        foundBreeze = []
+
 
 
         temp_breeze = list(self.breezes)
@@ -170,23 +170,20 @@ class Agent:
         x3 = self.pits[2][0]
         y3 = self.pits[2][1]
 
-        print("x "+str(x)+"y "+str(y))
+
         #TFF
         if ([x+1,y] in temp_breeze ):
             temp_breeze.remove([x+1,y])
-            foundBreeze.append([x+1,y])
 
         if ([x-1,y] in temp_breeze):
             temp_breeze.remove([x-1,y])
-            foundBreeze.append([x - 1, y])
 
         if ([x , y+1] in temp_breeze):
             temp_breeze.remove([x, y+1])
-            foundBreeze.append([x, y])
 
         if ([x , y-1] in temp_breeze):
             temp_breeze.remove([x, y-1])
-            foundBreeze.append([x, y-1])
+
         if(temp_breeze.__len__()==0):
             num += pit*noPit*noPit
             denom += num
@@ -316,7 +313,7 @@ class Agent:
 
         #FTF
         temp_breeze= list(self.breezes)
-        foundBreeze =[]
+
 
         if [x2-1,y2] in temp_breeze:
             temp_breeze.remove([x2-1,y2])
@@ -331,9 +328,124 @@ class Agent:
         #same thing but with x3 and y3 for FFT
         print("num5 " + str(num) + " DEnom " + str(denom))
         ans = num/denom
+        print("prob pit in " + str(x) + "," + str(y)+" "+str(num/denom))
 
-        print("percent chance of pit " +str(ans))
 
+        num=0
+        x = self.pits[1][0]
+        y = self.pits[1][1]
+        x2 = self.pits[2][0]
+        y2 = self.pits[2][1]
+        x3 = self.pits[0][0]
+        y3 = self.pits[0][1]
+
+        # TFF
+        if ([x + 1, y] in temp_breeze):
+            temp_breeze.remove([x + 1, y])
+
+        if ([x - 1, y] in temp_breeze):
+            temp_breeze.remove([x - 1, y])
+
+        if ([x, y + 1] in temp_breeze):
+            temp_breeze.remove([x, y + 1])
+
+        if ([x, y - 1] in temp_breeze):
+            temp_breeze.remove([x, y - 1])
+
+        if (temp_breeze.__len__() == 0):
+            num += pit * noPit * noPit
+
+        print("num1 " + str(num) + " DEnom " + str(denom))
+        temp_breeze = list(self.breezes)
+
+        # TTF
+
+        if ([x + 1, y] in temp_breeze):
+            temp_breeze.remove([x + 1, y])
+        if ([x2 + 1, y2] in temp_breeze):
+            temp_breeze.remove([x2 + 1, y2])
+
+        if ([x - 1, y] in temp_breeze):
+            temp_breeze.remove([x - 1, y])
+        if ([x2 - 1, y2] in temp_breeze):
+            temp_breeze.remove([x2 - 1, y2])
+
+        if ([x, y - 1] in temp_breeze):
+            temp_breeze.remove([x, y - 1])
+        if ([x2, y2 - 1] in temp_breeze):
+            temp_breeze.remove([x2, y2 - 1])
+
+        if ([x, y + 1] in temp_breeze):
+            temp_breeze.remove([x, y + 1])
+        if ([x2, y2 + 1] in temp_breeze):
+            temp_breeze.remove([x2, y2 + 1])
+
+        if len(temp_breeze) == 0:
+            num += pit * pit * noPit
+
+        print("num2 " + str(num) + " DEnom " + str(denom))
+
+        # TFT
+        if ([x + 1, y] in temp_breeze):
+            temp_breeze.remove([x + 1, y])
+        if ([x3 + 1, y3] in temp_breeze):
+            temp_breeze.remove([x3 + 1, y3])
+
+        if ([x - 1, y] in temp_breeze):
+            temp_breeze.remove([x - 1, y])
+        if ([x2 - 1, y3] in temp_breeze):
+            temp_breeze.remove([x2 - 1, y3])
+
+        if ([x, y - 1] in temp_breeze):
+            temp_breeze.remove([x, y - 1])
+        if ([x2, y3 - 1] in temp_breeze):
+            temp_breeze.remove([x2, y3 - 1])
+
+        if ([x, y + 1] in temp_breeze):
+            temp_breeze.remove([x, y + 1])
+        if ([x3, y3 + 1] in temp_breeze):
+            temp_breeze.remove([x3, y3 + 1])
+
+        if len(temp_breeze) == 0:
+            num += pit * pit * noPit
+
+        print("num2 " + str(num) + " DEnom " + str(denom))
+
+        # TTT
+        if [x - 1, y] in temp_breeze:
+            temp_breeze.remove([x - 1, y])
+        if [x2 - 1, y2] in temp_breeze:
+            temp_breeze.remove([x2 - 1, y2])
+        if [x3 - 1, y3] in temp_breeze:
+            temp_breeze.remove([x3 - 1, y3S])
+
+        if [x + 1, y] in temp_breeze:
+            temp_breeze.remove([x + 1, y])
+        if [x2 + 1, y2] in temp_breeze:
+            temp_breeze.remove([x2 + 1, y2])
+        if [x3 + 1, y3] in temp_breeze:
+            temp_breeze.remove([x3 + 1, y3])
+
+        if [x, y - 1] in temp_breeze:
+            temp_breeze.remove([x, y - 1])
+        if [x2, y2 - 1] in temp_breeze:
+            temp_breeze.remove([x2, y2 - 1])
+        if [x3, y3 - 1] in temp_breeze:
+            temp_breeze.remove([x3, y3 - 1])
+
+        if [x, y + 1] in temp_breeze:
+            temp_breeze.remove([x, y + 1])
+        if [x2, y2 + 1] in temp_breeze:
+            temp_breeze.remove([x2, y2 + 1])
+        if [x3, y3 + 1] in temp_breeze:
+            temp_breeze.remove([x3, y3 + 1])
+
+        if len(temp_breeze) == 0:
+            num += pit * pit * pit
+
+        print("num3 " + str(num) + " DEnom " + str(denom))
+        ans = num
+        print("prob pit in "+str(x)+","+str(y)+" "+str(num/denom))
 
 
 

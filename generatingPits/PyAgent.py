@@ -129,7 +129,7 @@ class Agent:
             print("breezes: "+str(i))
             x = i.pop(0)
             y=i.pop(0)
-            print("x: "+str(x)+" y: "+str(y))
+            # print("x: "+str(x)+" y: "+str(y))
             if ((not [x+1,y] in self.visited) and (not [x+1,y] in self.tovisit) and x+1<=4):
                 pits.append([x+1,y])
             if ((not [x-1,y] in self.visited) and (not [x-1,y] in self.tovisit) and x-1>=1):

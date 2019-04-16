@@ -179,8 +179,8 @@ class Agent:
                 temp_breeze.remove([x, y - 1])
 
             if (temp_breeze.__len__() == 0):
-                num.append( pit * (noPit ** (len(self.pits)-4)))
-                denom.append( pit * (noPit ** (len(self.pits)-4)))
+                num.append( pit * (noPit ** (len(self.pits)-1)))
+                denom.append( pit * (noPit ** (len(self.pits)-1)))
                 itteration+=1
             else:
                 num.append(0)

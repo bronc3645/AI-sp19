@@ -107,7 +107,7 @@ class Agent:
         print(str(self.posx)+":x")
         print(str(self.posy)+":y")
         print(str(self.oritation)+":oritation")
-        self.printworld()
+        # self.printworld()
         if(self.actionList):
             action = self.actionList.pop(0)
         else:
@@ -131,7 +131,7 @@ class Agent:
     def getpit(self):
 
         for i in self.breezes:
-            print("breezes: " + str(i))
+            # print("breezes: " + str(i))
             x = i[0]
             y = i[1]
             # print("x: "+str(x)+" y: "+str(y))
@@ -148,8 +148,8 @@ class Agent:
             not [x, y - 1] in self.pits) and y - 1 >= 1):
                 self.pits.append([x, y - 1])
 
-        for x in self.pits:
-            print("possible pits: " + str(x))
+        # for x in self.pits:
+        #     print("possible pits: " + str(x))
         if len(self.pits) >= 3:
             self.getProb()
 
@@ -197,7 +197,7 @@ class Agent:
             for o in self.pits:
                 x2=o[0]
                 y2=o[1]
-                if(not x==x2 and not y==y2):
+                if(not i==o):
                     if ([x + 1, y] in temp_breeze):
                         temp_breeze.remove([x + 1, y])
                     if ([x2 + 1, y2] in temp_breeze):
@@ -228,11 +228,11 @@ class Agent:
             for o in self.pits:
                 x2=o[0]
                 y2=o[0]
-                if (not x == x2 and not y == y2):
+                if (not i==o):
                     for n in self.pits:
                         x3=n[0]
                         y3=n[1]
-                        if (not x == x3 and not y == y3 and not x2 == x3 and y2 == y3):
+                        if (not i == n and not o == n):
                             if [x - 1, y] in temp_breeze:
                                 temp_breeze.remove([x - 1, y])
                             if [x2 - 1, y2] in temp_breeze:
@@ -277,15 +277,15 @@ class Agent:
                 for o in self.pits:
                     x2 = o[0]
                     y2 = o[0]
-                    if (not x == x2 and not y == y2):
+                    if (not i==o):
                         for n in self.pits:
                             x3 = n[0]
                             y3 = n[1]
-                            if(not x==x3 and not y==y3 and not x2==x3 and y2==y3):
+                            if(not i==n and not o==n):
                                 for r in self.pits:
                                     x4=r[0]
                                     y4=r[1]
-                                    if(not x==x4 and not y==y4 and not x2==x4 and not y2==y4 and not x3==x4 and not y3==y4):
+                                    if(not i==r and not o==r and not n==r):
                                         if [x - 1, y] in temp_breeze:
                                             temp_breeze.remove([x - 1, y])
                                         if [x2 - 1, y2] in temp_breeze:
@@ -328,6 +328,79 @@ class Agent:
                                         # print("num3 " + str(num) + " DEnom " + str(denom))
                                         temp_breeze = list(self.breezes)
             itteration += 1
+        
+        # 5 trues
+        if len(self.pits) >= 5:
+            itteration=0
+            for i in self.pits:
+                x = i[0]
+                y = i[1]
+                for o in self.pits:
+                    x2 = o[0]
+                    y2 = o[0]
+                    if (not i==o):
+                        for n in self.pits:
+                            x3 = n[0]
+                            y3 = n[1]
+                            if(not i==n and not o==n):
+                                for r in self.pits:
+                                    x4=r[0]
+                                    y4=r[1]
+                                    if(not i==r and not o==r and not n==r):
+                                        for t in self.pits:
+                                            x5=t[0]
+                                            y5=t[1]
+                                            if(not i==t and not o==t and not n==t and not r==t):
+                                                if [x - 1, y] in temp_breeze:
+                                                    temp_breeze.remove([x - 1, y])
+                                                if [x2 - 1, y2] in temp_breeze:
+                                                    temp_breeze.remove([x2 - 1, y2])
+                                                if [x3 - 1, y3] in temp_breeze:
+                                                    temp_breeze.remove([x3 - 1, y3])
+                                                if [x4 - 1, y4] in temp_breeze:
+                                                    temp_breeze.remove([x4 - 1, y4])
+                                                if [x5 - 1, y5] in temp_breeze:
+                                                    temp_breeze.remove([x5 - 1, y5])
+
+                                                if [x + 1, y] in temp_breeze:
+                                                    temp_breeze.remove([x + 1, y])
+                                                if [x2 + 1, y2] in temp_breeze:
+                                                    temp_breeze.remove([x2 + 1, y2])
+                                                if [x3 + 1, y3] in temp_breeze:
+                                                    temp_breeze.remove([x3 + 1, y3])
+                                                if [x4 + 1, y4] in temp_breeze:
+                                                    temp_breeze.remove([x4 + 1, y4])
+                                                if [x5 + 1, y5] in temp_breeze:
+                                                    temp_breeze.remove([x5 + 1, y5])
+
+                                                if [x, y - 1] in temp_breeze:
+                                                    temp_breeze.remove([x, y - 1])
+                                                if [x2, y2 - 1] in temp_breeze:
+                                                    temp_breeze.remove([x2, y2 - 1])
+                                                if [x3, y3 - 1] in temp_breeze:
+                                                    temp_breeze.remove([x3, y3 - 1])
+                                                if [x4, y4 - 1] in temp_breeze:
+                                                    temp_breeze.remove([x4, y4 - 1])
+                                                if [x5, y5 - 1] in temp_breeze:
+                                                    temp_breeze.remove([x5, y5 - 1])
+
+                                                if [x, y + 1] in temp_breeze:
+                                                    temp_breeze.remove([x, y + 1])
+                                                if [x2, y2 + 1] in temp_breeze:
+                                                    temp_breeze.remove([x2, y2 + 1])
+                                                if [x3, y3 + 1] in temp_breeze:
+                                                    temp_breeze.remove([x3, y3 + 1])
+                                                if [x4, y4 + 1] in temp_breeze:
+                                                    temp_breeze.remove([x4, y4 + 1])
+                                                if [x5, y5 + 1] in temp_breeze:
+                                                    temp_breeze.remove([x5, y5 + 1])
+
+                                                if len(temp_breeze) == 0:
+                                                    num[itteration] += pit ** 5 * noPit ** (len(self.pits)-5)
+                                                    denom[itteration] += pit ** 5 * noPit ** (len(self.pits)-5)
+                                                # print("num3 " + str(num) + " DEnom " + str(denom))
+                                                temp_breeze = list(self.breezes)
+            itteration += 1
 
         #1 false 1 true
         itteration = 0
@@ -337,7 +410,7 @@ class Agent:
             for o in self.pits:
                 x2 = o[0]
                 y2 = o[1]
-                if (not x == x2 and not y == y2):
+                if (not i==o):
                     if ([x2 + 1, y2] in temp_breeze):
                         temp_breeze.remove([x2 + 1, y2])
 
@@ -363,11 +436,11 @@ class Agent:
             for o in self.pits:
                 x2 = o[0]
                 y2 = o[0]
-                if (not x == x2 and not y == y2):
+                if (not i==o):
                     for n in self.pits:
                         x3 = n[0]
                         y3 = n[1]
-                        if (not x == x3 and not y == y3 and not x2 == x3 and y2 == y3):
+                        if (not i==n and not o==n):
                             if [x2 - 1, y2] in temp_breeze:
                                 temp_breeze.remove([x2 - 1, y2])
                             if [x3 - 1, y3] in temp_breeze:
@@ -404,15 +477,15 @@ class Agent:
                 for o in self.pits:
                     x2 = o[0]
                     y2 = o[0]
-                    if (not x == x2 and not y == y2):
+                    if (not i==o):
                         for n in self.pits:
                             x3 = n[0]
                             y3 = n[1]
-                            if (not x == x3 and not y == y3 and not x2 == x3 and y2 == y3):
+                            if (not i==n and not o==n):
                                 for r in self.pits:
                                     x4 = r[0]
                                     y4 = r[1]
-                                    if (not x == x4 and not y == y4 and not x2 == x4 and not y2 == y4 and not x3 == x4 and not y3 == y4):
+                                    if (not i==r and not o==r and not n==r):
                                         if [x2 - 1, y2] in temp_breeze:
                                             temp_breeze.remove([x2 - 1, y2])
                                         if [x3 - 1, y3] in temp_breeze:
@@ -447,6 +520,71 @@ class Agent:
                                         # print("num3 " + str(num) + " DEnom " + str(denom))
                                         temp_breeze = list(self.breezes)
             itteration += 1
+        
+        # one false 4 true
+        if len(self.pits) >= 5:
+            itteration = 0
+            for i in self.pits:
+                x = i[0]
+                y = i[1]
+                for o in self.pits:
+                    x2 = o[0]
+                    y2 = o[0]
+                    if (not i==o):
+                        for n in self.pits:
+                            x3 = n[0]
+                            y3 = n[1]
+                            if (not i==n and not o==n):
+                                for r in self.pits:
+                                    x4 = r[0]
+                                    y4 = r[1]
+                                    if (not i==r and not o==r and not n==r):
+                                        for t in self.pits:
+                                            x5=t[0]
+                                            y5=t[1]
+                                            if(not i==t and not o==t and not n==t and not r==t):
+                                                if [x2 - 1, y2] in temp_breeze:
+                                                    temp_breeze.remove([x2 - 1, y2])
+                                                if [x3 - 1, y3] in temp_breeze:
+                                                    temp_breeze.remove([x3 - 1, y3])
+                                                if [x4 - 1, y4] in temp_breeze:
+                                                    temp_breeze.remove([x4 - 1, y4])
+                                                if [x5 - 1, y5] in temp_breeze:
+                                                    temp_breeze.remove([x5 - 1, y5])
+
+                                                if [x2 + 1, y2] in temp_breeze:
+                                                    temp_breeze.remove([x2 + 1, y2])
+                                                if [x3 + 1, y3] in temp_breeze:
+                                                    temp_breeze.remove([x3 + 1, y3])
+                                                if [x4 + 1, y4] in temp_breeze:
+                                                    temp_breeze.remove([x4 + 1, y4])
+                                                if [x5 + 1, y5] in temp_breeze:
+                                                    temp_breeze.remove([x5 + 1, y5])
+
+                                                if [x2, y2 - 1] in temp_breeze:
+                                                    temp_breeze.remove([x2, y2 - 1])
+                                                if [x3, y3 - 1] in temp_breeze:
+                                                    temp_breeze.remove([x3, y3 - 1])
+                                                if [x4, y4 - 1] in temp_breeze:
+                                                    temp_breeze.remove([x4, y4 - 1])
+                                                if [x5, y5 - 1] in temp_breeze:
+                                                    temp_breeze.remove([x5, y5 - 1])
+
+                                                if [x2, y2 + 1] in temp_breeze:
+                                                    temp_breeze.remove([x2, y2 + 1])
+                                                if [x3, y3 + 1] in temp_breeze:
+                                                    temp_breeze.remove([x3, y3 + 1])
+                                                if [x4, y4 + 1] in temp_breeze:
+                                                    temp_breeze.remove([x4, y4 + 1])
+                                                if [x5, y5 + 1] in temp_breeze:
+                                                    temp_breeze.remove([x5, y5 + 1])
+
+                                        if len(temp_breeze) == 0:
+                                            denom[itteration] += (pit ** 4) * noPit ** (len(self.pits) - 4)
+                                        # print("num3 " + str(num) + " DEnom " + str(denom))
+                                        temp_breeze = list(self.breezes)
+            itteration += 1
+        
         # testing
         prob=1.0
         lolocation=[]
@@ -463,7 +601,6 @@ class Agent:
             self.searchEngine.AddSafeLocation(lolocation[0],lolocation[1])
             if(not lolocation in self.tovisit):
                 self.tovisit.append(lolocation)
-
 
     def check(self):
         for x in self.tovisit:

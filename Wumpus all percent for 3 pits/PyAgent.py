@@ -217,7 +217,7 @@ class Agent:
             num += pit * pit * noPit
             denom += pit * pit * noPit
         # print("num2 " + str(num) + " DEnom " + str(denom))
-
+        temp_breeze=list(self.breezes)
         # TFT
         if ([x + 1, y] in temp_breeze):
             temp_breeze.remove([x + 1, y])
@@ -243,7 +243,7 @@ class Agent:
             num += pit * pit * noPit
             denom += pit * pit * noPit
         # print("num2 " + str(num) + " DEnom " + str(denom))
-
+        temp_breeze=list(self.breezes)
         # TTT
         if [x - 1, y] in temp_breeze:
             temp_breeze.remove([x - 1, y])
@@ -329,7 +329,7 @@ class Agent:
                 self.lowest = num / denom
                 # print(str([x,y]))
                 self.lolocation = [x, y]
-
+        temp_breeze=list(self.breezes)
 
         num = 0
         x = self.pits[1][0]
@@ -356,7 +356,7 @@ class Agent:
             num += pit * noPit * noPit
 
         # print("num1 " + str(num) + " DEnom " + str(denom))
-        # temp_breeze = list(self.breezes)
+        temp_breeze = list(self.breezes)
 
         # TTF
 
@@ -382,7 +382,7 @@ class Agent:
 
         if len(temp_breeze) == 0:
             num += pit * pit * noPit
-
+        temp_breeze=list(self.breezes)
         # print("num2 " + str(num) + " DEnom " + str(denom))
 
         # TFT
@@ -408,6 +408,7 @@ class Agent:
 
         if len(temp_breeze) == 0:
             num += pit * pit * noPit
+        temp_breeze = list(self.breezes)
 
         # print("num2 " + str(num) + " DEnom " + str(denom))
 
@@ -442,7 +443,7 @@ class Agent:
 
         if len(temp_breeze) == 0:
             num += pit * pit * pit
-
+        temp_breeze=list(self.breezes)
         # print("num3 " + str(num) + " DEnom " + str(denom))
         if (denom != 0):
             ans = num/denom
@@ -478,7 +479,7 @@ class Agent:
             num += pit * noPit * noPit
 
         # print("num1 " + str(num) + " DEnom " + str(denom))
-        # temp_breeze = list(self.breezes)
+        temp_breeze = list(self.breezes)
 
         # TTF
 
@@ -504,7 +505,7 @@ class Agent:
 
         if len(temp_breeze) == 0:
             num += pit * pit * noPit
-
+        temp_breeze=list(self.breezes)
         # print("num2 " + str(num) + " DEnom " + str(denom))
 
         # TFT
@@ -531,6 +532,7 @@ class Agent:
         if len(temp_breeze) == 0:
             num += pit * pit * noPit
 
+        temp_breeze = list(self.breezes)
         # print("num2 " + str(num) + " DEnom " + str(denom))
 
         # TTT
